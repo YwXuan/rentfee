@@ -9,12 +9,45 @@ let previousReadings = {
 
 let history = []; // 儲存歷史紀錄
 
+// 初始化頁面時，從 localStorage 載入資料
+window.onload = function() {
+    loadData();
+};
+
+// 從 localStorage 讀取資料
+function loadData() {
+  const savedData = localStorage.getItem('electricityData');
+  if (savedData) {
+    const data = JSON.parse(savedData);
+
+    // 載入總用電量、總電費
+    document.getElementById('totalConsumption').value = data.totalConsumption || '';
+    document.getElementById('totalFee').value = data.totalFee || '';
+
+    // 載入房間電表數
+    document.getElementById('room1_current').value = data.room1_current || '';
+    document.getElementById('room2_current').value = data.room2_current || '';
+    document.getElementById('room3_current').value = data.room3_current || '';
+    document.getElementById('room4_current').value = data.room4_current || '';
+    document.getElementById('room5_current').value = data.room5_current || '';
+
+    document.getElementById('room1_last').value = data.room1_last || '';
+    document.getElementById('room2_last').value = data.room2_last || '';
+    document.getElementById('room3_last').value = data.room3_last || '';
+    document.getElementById('room4_last').value = data.room4_last || '';
+    document.getElementById('room5_last').value = data.room5_last || '';
+
+      previousReadings = data.previousReadings || previousReadings;
+      history = data.history || [];
+        updateHistoryList(); // 重新載入歷史紀錄
+  }
+}
 // 計算電費並更新紀錄
 function calculateElectricity() {
     // 取得本期總用電量與總電費
     let totalConsumption = parseFloat(document.getElementById("totalConsumption").value);
     let totalFee = parseFloat(document.getElementById("totalFee").value);
-    const pricePerKWh = (totalFee / totalConsumption).toFixed(2); // 單價
+     const pricePerKWh = (totalFee / totalConsumption).toFixed(2); // 單價
 
     // 驗證總用電量和總電費是否有效
     if (isNaN(totalConsumption) || isNaN(totalFee) || totalConsumption <= 0 || totalFee <= 0) {
@@ -108,7 +141,8 @@ function calculateElectricity() {
         previousReadings: {...previousReadings} // 儲存上期電表數
     };
     history.push(historyItem);
-
+    // 儲存資料到 localStorage
+    saveData(totalConsumption,totalFee,room1_current,room2_current,room3_current,room4_current,room5_current,room1_last,room2_last,room3_last,room4_last,room5_last,previousReadings,history);
     // 顯示結果
     updateFeeList(personFees, actualTotalFee, totalConsumption);
     updateHistoryList();
@@ -120,7 +154,26 @@ function calculateElectricity() {
     document.getElementById("room4_last").value = room4_current;
     document.getElementById("room5_last").value = room5_current;
 }
-
+// 將資料儲存到 localStorage
+function saveData(totalConsumption, totalFee,room1_current,room2_current,room3_current,room4_current,room5_current,room1_last,room2_last,room3_last,room4_last,room5_last,previousReadings,history) {
+  const data = {
+      totalConsumption: totalConsumption,
+    totalFee: totalFee,
+      room1_current: room1_current,
+    room2_current: room2_current,
+    room3_current: room3_current,
+    room4_current: room4_current,
+    room5_current: room5_current,
+    room1_last: room1_last,
+    room2_last: room2_last,
+    room3_last: room3_last,
+    room4_last: room4_last,
+     room5_last: room5_last,
+    previousReadings: previousReadings,
+      history: history
+  };
+  localStorage.setItem('electricityData', JSON.stringify(data));
+}
 // 更新結果顯示
 function updateFeeList(personFees, totalFee, totalConsumption) {
     // 生成顯示用的列表項
@@ -129,7 +182,7 @@ function updateFeeList(personFees, totalFee, totalConsumption) {
 
     // 確保按照人名順序顯示
     const orderedPeople = [
-        "江昀倩","陳亭蓁",
+         "江昀倩","陳亭蓁",
         "吳宜蓁","黃幸妤",
         "廖韋涵",
         "江羽婷","羅香茹",
