@@ -1,0 +1,117 @@
+/* 基本設置 */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    display: flex;
+    justify-content: center; /* 水平置中 */
+    align-items: center; /* 垂直置中 */
+    min-height: 100vh; /* 確保內容至少佔滿整個視窗高度 */
+    flex-direction: column;
+    overflow-y: auto; /* 允許頁面滾動 */
+}
+
+.container {
+    width: 80%;
+    max-width: 800px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px; /* 調整外邊距 */
+}
+
+/* 標題 */
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 1.2em;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* 表格樣式 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+table th, table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f4f4f9;
+}
+
+table td input[type="number"] {
+    width: 80%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* 每間房間的"當期"與"上期"欄位左右排列 */
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+/* 顯示結果區域 */
+#result, #history {
+    margin-top: 30px;
+}
+
+#feeList, #historyList {
+    list-style-type: none;
+    padding: 0;
+}
+
+#feeList p{
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+
+#historyList li {
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+}
+#feeList ul li {
+    background-color: #fff;
+    border: none;
+}
+/* 文字區域樣式 */
+strong {
+    color: #333;
+}
+
+/* 歷史紀錄區域滾動條 */
+#history {
+    max-height: 300px; /* 限制歷史紀錄的最大高度 */
+    overflow-y: auto; /* 使得超出區域顯示滾動條 */
+    margin-top: 30px;
+}
