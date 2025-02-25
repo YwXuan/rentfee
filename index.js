@@ -1,6 +1,54 @@
 // 定義 current 和 last 陣列
 var data_current = [4673.6, 1917.8, 2837.4, 84.5, 6101.8];  // 本期電表數 2a, 2b, 3a, 3b, 4
 var data_last = [4673.6, 1917.7, 2835.1, 82.4, 6100.1];    // 上期電表數 2a, 2b, 3a, 3b, 4
+var totalConsumption = 890; // 總用電量
+var totalFee = 1801; // 總電費
+var totalwater = 408; // 總水費
+
+// 儲存上期電表數的資料結構
+let previousReadings = {
+    room1: 0, // 江昀倩、陳亭蓁
+    room2: 0, // 吳宜蓁、黃幸妤
+    room3: 0, // 廖韋涵
+    room4: 0, // 江羽婷、羅香茹
+    room5: 0  // 顏妏軒
+};
+
+let history = []; // 儲存歷史紀錄
+
+// 初始化頁面時，從 localStorage 載入資料
+window.onload = function() {
+    loadData();
+    updateRoomData(); // 確保初始時數據能正確顯示
+};
+
+// 從 localStorage 讀取資料
+function loadData() {
+    const savedData = localStorage.getItem('electricityData');
+    if (savedData) {
+        const data = JSON.parse(savedData);
+
+        // 載入總用電量、總電費、總水費
+        document.getElementById('totalConsumption').value = data.totalConsumption || totalConsumption;
+        document.getElementById('totalFee').value = data.totalFee || totalFee;
+        document.getElementById('totalwater').value = data.totalwater || totalwater;
+
+        // 載入房間電表數
+        ['room1', 'room2', 'room3', 'room4', 'room5'].forEach(room => {
+            document.getElementById(`${room}_current`).value = data[`${room}_current`] || '';
+            document.getElementById(`${room}_last`).value = data[`${room}_last`] || '';
+        });
+
+        previousReadings = data.previousReadings || previousReadings;
+        history = data.history || [];
+        updateHistoryList(); // 重新載入歷史紀錄
+    } else {
+        // 如果 localStorage 沒有數據，則設定預設值
+        document.getElementById('totalConsumption').value = 890;
+        document.getElementById('totalFee').value = 1801;
+        document.getElementById('totalwater').value = 408;
+    }
+}
 
 // 更新表格中的值
 function updateRoomData() {
@@ -21,52 +69,12 @@ function updateRoomData() {
 }
 
 
-// 儲存上期電表數的資料結構
-let previousReadings = {
-    room1: 0, // 江昀倩、陳亭蓁
-    room2: 0, // 吳宜蓁、黃幸妤
-    room3: 0, // 廖韋涵
-    room4: 0, // 江羽婷、羅香茹
-    room5: 0  // 顏妏軒
-};
-
-let history = []; // 儲存歷史紀錄
-
-// 初始化頁面時，從 localStorage 載入資料
-window.onload = function() {
-    loadData();
-    updateRoomData(); // 確保初始時數據能正確顯示
-
-};
-
-// 從 localStorage 讀取資料
-function loadData() {
-    const savedData = localStorage.getItem('electricityData');
-    if (savedData) {
-        const data = JSON.parse(savedData);
-
-        // 載入總用電量、總電費
-        document.getElementById('totalConsumption').value = data.totalConsumption || '';
-        document.getElementById('totalFee').value = data.totalFee || '';
-
-        // 載入房間電表數
-        ['room1', 'room2', 'room3', 'room4', 'room5'].forEach(room => {
-            document.getElementById(`${room}_current`).value = data[`${room}_current`] || '';
-            document.getElementById(`${room}_last`).value = data[`${room}_last`] || '';
-        });
-
-        previousReadings = data.previousReadings || previousReadings;
-        history = data.history || [];
-        updateHistoryList(); // 重新載入歷史紀錄
-    }
-}
-
-let totalConsumption = parseFloat(document.getElementById("totalConsumption").value);
-let totalFee = parseFloat(document.getElementById("totalFee").value);
-let totalWater = parseFloat(document.getElementById("totalwater").value);
-let waterFee = Math.round(totalWater / 8);
-
 function calculateElectricity() {
+    // 取得輸入框的值
+    let totalConsumption = parseFloat(document.getElementById("totalConsumption").value);
+    let totalFee = parseFloat(document.getElementById("totalFee").value);
+    let totalWater = parseFloat(document.getElementById("totalwater").value);
+
     // 驗證總用電量和總電費是否有效
     if (isNaN(totalConsumption) || isNaN(totalFee) || totalConsumption <= 0 || totalFee <= 0) {
         alert("請輸入有效的總用電量與總電費！");
@@ -84,8 +92,8 @@ function calculateElectricity() {
 
     // 驗證當期電表數是否有效
     for (let room in roomReadings) {
-        if (isNaN(roomReadings[room].current)) {
-            alert(`請輸入${room}的當期電表數！`);
+        if (isNaN(roomReadings[room].current) || isNaN(roomReadings[room].last)) {
+            alert(`請輸入 ${room} 的有效電表數！`);
             return;
         }
     }
@@ -143,6 +151,9 @@ function calculateElectricity() {
     // 儲存資料到 localStorage
     saveData();
 
+    // 計算水費
+    let waterFee = Math.round(totalWater / 8);
+
     // 顯示結果
     updateFeeList(personFees, actualTotalFee, totalConsumption, waterFee);
     updateHistoryList();
@@ -150,6 +161,10 @@ function calculateElectricity() {
 
 // 儲存資料到 localStorage
 function saveData() {
+    let totalConsumption = parseFloat(document.getElementById("totalConsumption").value);
+    let totalFee = parseFloat(document.getElementById("totalFee").value);
+    let totalWater = parseFloat(document.getElementById("totalwater").value);
+
     const data = {
         totalConsumption,
         totalFee,
@@ -191,7 +206,7 @@ function updateFeeList(personFees, totalFee, totalConsumption, waterFee) {
     let totalResult = document.getElementById("totalResult");
     totalResult.innerHTML = `
         <p>匯款人實際收到的總費用: ${totalIndividualFee + waterFee * 8} 元</p>
-        <p>匯款人應收總費用: ${totalFee + totalWater} 元</p>
+        <p>匯款人應收總費用: ${totalFee +  parseFloat(document.getElementById("totalwater").value)} 元</p>
     `;
 }
 
