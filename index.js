@@ -1,3 +1,26 @@
+// 定義 current 和 last 陣列
+var data_current = [4673.6, 1917.7, 2835.1, 82.4, 6100.1];  // 本期電表數
+var data_last = [4583.3, 1898.9, 2780.5, 63.3, 5799.6];    // 上期電表數
+
+// 更新表格中的值
+function updateRoomData() {
+    document.getElementById('room4_current').value = data_current[0];
+    document.getElementById('room4_last').value = data_last[0];
+
+    document.getElementById('room5_current').value = data_current[1];
+    document.getElementById('room5_last').value = data_last[1];
+
+    document.getElementById('room2_current').value = data_current[2];
+    document.getElementById('room2_last').value = data_last[2];
+
+    document.getElementById('room3_current').value = data_current[3];
+    document.getElementById('room3_last').value = data_last[3];
+
+    document.getElementById('room1_current').value = data_current[4];
+    document.getElementById('room1_last').value = data_last[4];
+}
+
+
 // 儲存上期電表數的資料結構
 let previousReadings = {
     room1: 0, // 江昀倩、陳亭蓁
@@ -12,6 +35,8 @@ let history = []; // 儲存歷史紀錄
 // 初始化頁面時，從 localStorage 載入資料
 window.onload = function() {
     loadData();
+    updateRoomData(); // 確保初始時數據能正確顯示
+
 };
 
 // 從 localStorage 讀取資料

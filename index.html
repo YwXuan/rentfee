@@ -40,53 +40,47 @@
                     </tr>
                 </thead>
                 <tbody>
-                 <!-- 房間 2A - 羽婷、羅 -->
-                    <tr>
-                        <td>羅香茹
-                            江羽婷</td>
-                        <td><input type="number" id="room4_current" placeholder="請輸入本期電表數" value="4673.6"></td>
-                        <td><input type="number" id="room4_last" placeholder="請輸入上期電表數" value="4583.3"></td>
-                            <td><input type="number" id="room4_usage" disabled placeholder="本期用電量" readonly></td>
-                    </tr>
-
-                    <!-- 房間 2B - 顏 -->
-                    <tr>
-                        <td>顏妏軒
-                        </td>
-                        <td><input type="number" id="room5_current" placeholder="請輸入本期電表數" value="1917.7"></td>
-                            <td><input type="number" id="room5_last" placeholder="請輸入上期電表數" value="1898.9"></td>
-                            <td><input type="number" id="room5_usage" disabled placeholder="本期用電量" readonly></td>
-                    </tr>
-
-                    <!-- 房間 3A - 小吳、CU -->
-                    <tr>
-                        <td>吳宜蓁
-                            黃幸妤
-                            </td>
-                        <td><input type="number" id="room2_current" placeholder="請輸入本期電表數" value="2835.1"></td>
-                        <td><input type="number" id="room2_last" placeholder="請輸入上期電表數" value="2780.5"></td>
-                         <td><input type="number" id="room2_usage" disabled placeholder="本期用電量" readonly></td>
-                    </tr>
-
-                    <!-- 房間 3B - 廖 -->
-                    <tr>
-                        <td>廖韋涵
-                        </td>
-                        <td><input type="number" id="room3_current" placeholder="請輸入本期電表數" value="82.4"></td>
-                        <td><input type="number" id="room3_last" placeholder="請輸入上期電表數" value="63.3"></td>
-                          <td><input type="number" id="room3_usage" disabled placeholder="本期用電量" readonly></td>
-                    </tr>
-
-                    <!-- 房間 4 - 倩倩、亭蓁 -->
-                    <tr>
-                        <td>江昀倩
-                            陳亭蓁</td>
-                        <td><input type="number" id="room1_current" placeholder="請輸入本期電表數" value="6100.1"></td>
-                        <td><input type="number" id="room1_last" placeholder="請輸入上期電表數" value="5799.6"></td>
-                            <td><input type="number" id="room1_usage" disabled placeholder="本期用電量" readonly></td>
-                    </tr>
+                        <!-- 房間 2A - 羽婷、羅 -->
+                        <tr>
+                            <td>羅香茹 江羽婷</td>
+                            <td><input type="number" id="room4_current" placeholder="請輸入本期電表數" value="data_current[0]"></td>
+                            <td><input type="number" id="room4_last" placeholder="請輸入上期電表數" value="data_last[0]"></td>
+                            <td><input type="number" id="room4_usage" placeholder="本期用電量" readonly></td>
+                        </tr>
                     
+                        <!-- 房間 2B - 顏 -->
+                        <tr>
+                            <td>顏妏軒</td>
+                            <td><input type="number" id="room5_current" placeholder="請輸入本期電表數" value="data_current[1]"></td>
+                            <td><input type="number" id="room5_last" placeholder="請輸入上期電表數" value="data_last[1]"></td>
+                            <td><input type="number" id="room5_usage" placeholder="本期用電量" readonly></td>
+                        </tr>
+                    
+                        <!-- 房間 3A - 小吳、CU -->
+                        <tr>
+                            <td>吳宜蓁 黃幸妤</td>
+                            <td><input type="number" id="room2_current" placeholder="請輸入本期電表數" value="data_current[2]"></td>
+                            <td><input type="number" id="room2_last" placeholder="請輸入上期電表數" value="data_last[2]"></td>
+                            <td><input type="number" id="room2_usage" placeholder="本期用電量" readonly></td>
+                        </tr>
+                    
+                        <!-- 房間 3B - 廖 -->
+                        <tr>
+                            <td>廖韋涵</td>
+                            <td><input type="number" id="room3_current" placeholder="請輸入本期電表數" value="data_current[3]"></td>
+                            <td><input type="number" id="room3_last" placeholder="請輸入上期電表數" value="data_last[3]"></td>
+                            <td><input type="number" id="room3_usage" placeholder="本期用電量" readonly></td>
+                        </tr>
+                    
+                        <!-- 房間 4 - 倩倩、亭蓁 -->
+                        <tr>
+                            <td>江昀倩 陳亭蓁</td>
+                            <td><input type="number" id="room1_current" placeholder="請輸入本期電表數" value="data_current[4]"></td>
+                            <td><input type="number" id="room1_last" placeholder="請輸入上期電表數" value="data_last[4]"></td>
+                            <td><input type="number" id="room1_usage" placeholder="本期用電量" readonly></td>
+                        </tr>
                 </tbody>
+                
             </table>
 
             <!-- 提交按鈕 -->
