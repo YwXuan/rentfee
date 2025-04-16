@@ -43,6 +43,17 @@ function loadData() {
         history = data.history || [];
         updateHistoryList(); // 重新載入歷史紀錄
     }
+    else {
+        // 如果沒有資料，則初始化為預設值
+        document.getElementById('totalConsumption').value = totalConsumption;
+        document.getElementById('totalFee').value = totalFee;
+        document.getElementById('totalwater').value = totalwater;
+
+        ['room1', 'room2', 'room3', 'room4', 'room5'].forEach(room => {
+            document.getElementById(`${room}_current`).value = '';
+            document.getElementById(`${room}_last`).value = '';
+        });
+    }
 }
 
 // 更新表格中的值
