@@ -1,9 +1,9 @@
 // 定義 current 和 last 陣列
-var data_current = [4673.6, 1917.8, 2837.4, 84.5, 6101.8];  // 本期電表數 2a, 2b, 3a, 3b, 4
-var data_last = [4673.6, 1917.7, 2835.1, 82.4, 6100.1];    // 上期電表數 2a, 2b, 3a, 3b, 4
+var data_current = [4673.6, 1917.8, 2842.1, 88.6, 6109.2];  // 本期電表數 2a, 2b, 3a, 3b, 4
+var data_last = [4673.6, 1917.8, 2837.4, 84.5, 6101.8];    // 上期電表數 2a, 2b, 3a, 3b, 4
 var totalConsumption = 890; // 總用電量
-var totalFee = 1801; // 總電費
-var totalwater = 408; // 總水費
+var totalFee = 1224; // 總電費
+var totalwater = 271; // 總水費
 
 // 儲存上期電表數的資料結構
 let previousReadings = {
