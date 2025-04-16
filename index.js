@@ -42,11 +42,6 @@ function loadData() {
         previousReadings = data.previousReadings || previousReadings;
         history = data.history || [];
         updateHistoryList(); // 重新載入歷史紀錄
-    } else {
-        // 如果 localStorage 沒有數據，則設定預設值
-        document.getElementById('totalConsumption').value = 0;
-        document.getElementById('totalFee').value = 0;
-        document.getElementById('totalwater').value = 0;
     }
 }
 
