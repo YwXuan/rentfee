@@ -29,9 +29,9 @@ function loadData() {
         const data = JSON.parse(savedData);
 
         // 載入總用電量、總電費、總水費
-        // document.getElementById('totalConsumption').value = data.totalConsumption || totalConsumption;
-        // document.getElementById('totalFee').value = data.totalFee || totalFee;
-        // document.getElementById('totalwater').value = data.totalwater || totalwater;
+        document.getElementById('totalConsumption').value =  totalConsumption;
+        document.getElementById('totalFee').value =  totalFee;
+        document.getElementById('totalwater').value = totalwater;
 
         // 載入房間電表數
         ['room1', 'room2', 'room3', 'room4', 'room5'].forEach(room => {
@@ -44,9 +44,9 @@ function loadData() {
         updateHistoryList(); // 重新載入歷史紀錄
     } else {
         // 如果 localStorage 沒有數據，則設定預設值
-        document.getElementById('totalConsumption').value = 890;
-        document.getElementById('totalFee').value = 1801;
-        document.getElementById('totalwater').value = 408;
+        document.getElementById('totalConsumption').value = 0;
+        document.getElementById('totalFee').value = 0;
+        document.getElementById('totalwater').value = 0;
     }
 }
 
