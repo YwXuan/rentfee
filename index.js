@@ -1,7 +1,7 @@
 // 定義 current 和 last 陣列
 var data_current = [4673.6, 1917.8, 2842.1, 88.6, 6109.2];  // 本期電表數 2a, 2b, 3a, 3b, 4
 var data_last = [4673.6, 1917.8, 2837.4, 84.5, 6101.8];    // 上期電表數 2a, 2b, 3a, 3b, 4
-var totalConsumption = 890; // 總用電量
+var totalConsumption = 689; // 總用電量
 var totalFee = 1224; // 總電費
 var totalwater = 271; // 總水費
 
@@ -29,9 +29,9 @@ function loadData() {
         const data = JSON.parse(savedData);
 
         // 載入總用電量、總電費、總水費
-        document.getElementById('totalConsumption').value = data.totalConsumption || totalConsumption;
-        document.getElementById('totalFee').value = data.totalFee || totalFee;
-        document.getElementById('totalwater').value = data.totalwater || totalwater;
+        // document.getElementById('totalConsumption').value = data.totalConsumption || totalConsumption;
+        // document.getElementById('totalFee').value = data.totalFee || totalFee;
+        // document.getElementById('totalwater').value = data.totalwater || totalwater;
 
         // 載入房間電表數
         ['room1', 'room2', 'room3', 'room4', 'room5'].forEach(room => {
